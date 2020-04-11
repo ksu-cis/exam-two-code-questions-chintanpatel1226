@@ -25,6 +25,7 @@ namespace ExamTwoCodeQuestions.Data
             set
             {
                 fruit = value;
+                InvokePropertyChanged("Name");
                 InvokePropertyChanged("Fruit");
             }
         }
@@ -67,16 +68,21 @@ namespace ExamTwoCodeQuestions.Data
                 else { return new List<string>() { "Hold Ice Cream" }; }
             }
         }
-
-        public override string ToString()
+        public string Name
         {
-            if (WithIceCream)
+            get
             {
-                return Fruit + " With Ice Cream";
-            }
-            else
-            {
-                return Fruit + " Without Ice Cream";
+                switch (Fruit)
+                {
+                    case FruitFilling.Blueberry:
+                        return "Blueberry Cobbler";
+                    case FruitFilling.Cherry:
+                        return "Cherry Cobbler";
+                    case FruitFilling.Peach:
+                        return "Peach Cobbler";
+                    default:
+                        throw new NotImplementedException("No cobbler found.");
+                }
             }
         }
     }
